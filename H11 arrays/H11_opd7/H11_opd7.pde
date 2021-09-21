@@ -1,21 +1,19 @@
 import controlP5.*;
 ControlP5 cp5;
-String[] arrays = {};
-Button aknop;
-Textfield tekstvak;
-Textfield sneak;
+
+String[] arrays;
 int count;
 
+Button aknop;
+Textfield tekstvak;
+
 void setup() {
-  for (int i = 0; i < arrays.length; i++) {
-    count = 0;
-    count++;
-    if (count == 10) {
-    }
-  }
   cp5 = new ControlP5(this);
   size(500, 500);
-  background(255, 255, 255);
+  background(255, 0, 255);
+  
+  arrays = new String[10];
+  count = 0;
 
   aknop = cp5
     .addButton("deknop")
@@ -24,21 +22,25 @@ void setup() {
     .setSize(200, 40);
 
   tekstvak = cp5
-    .addTextfield("textvak")
+    .addTextfield("Voeg 10 namen toe!")
     .setSize(100, 100)
     .setPosition(200, 200)
     .setAutoClear(false);
-
-  //sneak = cp5
-  //  .addTextfield("")
-  //  .setSize(100, 100)
-  //  .setPosition(100, 0);
 }
 
 void draw() {
-  aknop();
 }
 
-void aknop() {
-  tekstvak.getText();
+void deknop() {
+  String invoer = tekstvak.getText();
+  arrays[count] = invoer;
+  count++;
+  
+  if (count == 10) {
+    for (int i = 0; i < arrays.length; i++) {
+      textSize(13);
+      text(arrays[i], 20, 100 + i * 30);
+    }
+    
+  }
 }
